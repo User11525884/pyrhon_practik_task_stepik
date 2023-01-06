@@ -14,7 +14,7 @@ for i in ans:
         lib[i] = 1
     else:
         lib[i] += 1
-for i, k in lib.items():
+# for i, k in lib.items():
 #  print(i, k)
 sorted_lib = sorted(lib.items(), key=lambda x: x[1], reverse=True)
 converted_dict = dict(sorted_lib[:3])
