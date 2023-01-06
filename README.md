@@ -1,1 +1,1 @@
-# pyrhon_practik_task_stepik
+# python_practik_task_stepik
