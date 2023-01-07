@@ -26,5 +26,37 @@ def task_1_3():
     print(cnt)
 
 
+def task_1_4():
+    resp = urlopen('https://stepik.org/media/attachments/lesson/245130/6.html')  # скачиваем файл
+    html = resp.read().decode('utf8')  # считываем содержимое
+    soup = BeautifulSoup(html, 'html.parser')
+    for a in soup.findAll('a', href=True):
+        print(a['href'])
+
+def task_1_4_1():
+    resp = urlopen('https://stepik.org/media/attachments/lesson/245130/6.html')  # скачиваем файл
+    html = resp.read().decode('utf8')  # считываем содержимое
+    soup = BeautifulSoup(html, 'html.parser')
+    for link in soup.find_all('a'):
+        print(link.get('href'))
+
+def task_1_4_2():
+    import re
+    from urllib.request import urlopen
+    html = str(urlopen("https://ru.wikipedia.org/wiki/Python").read().decode('utf-8'))
+    regular = re.findall(r'<a.*?href="([^"]*?)"', html)
+    print(*regular, sep='\n')
+
+def task_1_4_3():
+    from bs4 import BeautifulSoup
+    from urllib.request import urlopen
+    html = urlopen("https://ru.wikipedia.org/wiki/Python").read().decode('utf-8')
+    soup = BeautifulSoup(html, 'lxml')
+    # href = soup.find_all('a')
+    # print(*[c["href"] for c in href if c.get("href") is not None], sep='\n')
+    # Или так как в видео
+    href = soup.find_all('a', href=True)
+    print(*[c["href"] for c in href], sep='\n')
+
 if __name__ == '__main__':
-    task_1_3()
+    task_1_4_3()
